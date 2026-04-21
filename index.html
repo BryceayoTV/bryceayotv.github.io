@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="∴ · ∴">
+<meta property="og:description" content="an incantation takes shape">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#000000">
+<title>∴ · ∴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --orange: #FF5D36;
+  --orange-deep: #8a2d14;
+  --bone: #f0e6d9;
+  --ash: rgba(240, 230, 217, 0.45);
+  --void: #000;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: 'Cormorant Garamond', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── Atmosphere ─────────────────────────────── */
+.grain {
+  position: fixed;
+  inset: -10%;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.75 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  z-index: 50;
+  animation: grainShift 0.55s steps(3) infinite;
+}
+
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-2%, 3%); }
+  66% { transform: translate(3%, -2%); }
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 85% 65% at 50% 50%, transparent 0%, transparent 35%, rgba(0,0,0,0.92) 100%),
+    radial-gradient(circle at 50% 45%, rgba(255, 93, 54, 0.07) 0%, transparent 60%);
+  z-index: 48;
+}
+
+.scan {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.18) 3px,
+    rgba(0,0,0,0.18) 4px
+  );
+  z-index: 49;
+  opacity: 0.35;
+}
+
+/* ── Layout ─────────────────────────────── */
+main {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(1.25rem, 3.5vw, 2.75rem);
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────── */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(240, 230, 217, 0.08);
+}
+
+.mark {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: var(--orange);
+  letter-spacing: 0.55em;
+  padding-right: 0.55em; /* balance the letter-spacing */
+}
+
+.meta-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--ash);
+  text-align: right;
+  line-height: 1.9;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.meta-right span { display: block; }
+.meta-right .hot {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* ── Reveal ─────────────────────────────── */
+.reveal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: clamp(2rem, 6vh, 5rem) 0;
+  gap: clamp(1.25rem, 3vh, 2.5rem);
+  position: relative;
+}
+
+.preamble {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: clamp(0.6rem, 1.15vw, 0.82rem);
+  letter-spacing: 0.55em;
+  color: var(--ash);
+  text-transform: uppercase;
+  padding-left: 0.55em;
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+}
+
+.preamble::before,
+.preamble::after {
+  content: "";
+  width: clamp(1.5rem, 4vw, 3rem);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--orange), transparent);
+}
+
+.letters {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.15rem, 0.9vw, 0.55rem);
+  width: 100%;
+  max-width: 100%;
+  padding: 0 0.5rem;
+}
+
+.letter {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 7.2vw, 6.5rem);
+  line-height: 1;
+  width: clamp(1.5rem, 6.5vw, 5.5rem);
+  height: clamp(2.4rem, 9vw, 7.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-transform: uppercase;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+.letter.locked::after {
+  content: "";
+  position: absolute;
+  bottom: 0.35em;
+  left: 25%;
+  right: 25%;
+  height: 1.5px;
+  background: rgba(240, 230, 217, 0.22);
+}
+
+.letter.revealed {
+  text-shadow:
+    0 0 20px rgba(255, 93, 54, 0.4),
+    0 0 60px rgba(255, 93, 54, 0.18),
+    0 0 120px rgba(255, 93, 54, 0.1);
+  animation: arrive 1.2s cubic-bezier(.2,.8,.25,1) both;
+}
+
+.letter.revealed::before {
+  content: attr(data-c);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 93, 54, 0.35);
+  mix-blend-mode: screen;
+  transform: translate(1.5px, -1px);
+  pointer-events: none;
+  filter: blur(0.3px);
+}
+
+.letter.summoned {
+  animation: summon 2.6s cubic-bezier(.2,.8,.25,1) both;
+}
+
+@keyframes arrive {
+  0%   { opacity: 0; transform: translateY(-18px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes summon {
+  0%   { opacity: 0; transform: scale(2.6) rotate(-6deg); filter: blur(30px); color: var(--bone); }
+  30%  { opacity: 0.6; filter: blur(8px); color: var(--bone); }
+  55%  { opacity: 1; transform: scale(1.08); filter: blur(0.5px); color: var(--bone); }
+  70%  { color: var(--bone); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); color: var(--orange); }
+}
+
+/* ── Subtitle: glitchy REVAMPED II ─────── */
+.subtitle {
+  margin-top: clamp(0.75rem, 2vh, 1.5rem);
+  height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.glitch {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(0.82rem, 2vw, 1.55rem);
+  letter-spacing: 0.32em;
+  color: var(--bone);
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding-left: 0.32em;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.32em;
+}
+
+.glitch::before {
+  color: var(--orange);
+  animation: glitch-top 4.2s infinite steps(1, end);
+  transform-origin: center;
+  opacity: 0;
+}
+
+.glitch::after {
+  color: var(--orange-deep);
+  animation: glitch-bot 5.7s infinite steps(1, end);
+  transform-origin: center;
+  opacity: 0;
+}
+
+@keyframes glitch-top {
+  0%, 100%  { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate(0); }
+  3%   { opacity: 1; clip-path: inset(5% 0 70% 0); transform: translate(-3px, 0); }
+  5%   { opacity: 1; clip-path: inset(25% 0 55% 0); transform: translate(4px, 0); }
+  6%   { opacity: 0; }
+  47%  { opacity: 1; clip-path: inset(10% 0 75% 0); transform: translate(-2px, 1px); }
+  49%  { opacity: 0; }
+  82%  { opacity: 1; clip-path: inset(40% 0 40% 0); transform: translate(3px, 0); }
+  83%  { opacity: 0; }
+}
+
+@keyframes glitch-bot {
+  0%, 100%  { opacity: 0; clip-path: inset(100% 0 0 0); transform: translate(0); }
+  23%  { opacity: 1; clip-path: inset(70% 0 10% 0); transform: translate(3px, -1px); }
+  25%  { opacity: 1; clip-path: inset(55% 0 20% 0); transform: translate(-3px, 0); }
+  26%  { opacity: 0; }
+  62%  { opacity: 1; clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+  64%  { opacity: 0; }
+  91%  { opacity: 1; clip-path: inset(50% 0 35% 0); transform: translate(-4px, 0); }
+  92%  { opacity: 0; }
+}
+
+.subtitle.dim .glitch {
+  opacity: 0.55;
+  transition: opacity 1.2s;
+}
+
+/* ── Footer ─────────────────────────────── */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(240, 230, 217, 0.08);
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.countdown {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.countdown-label {
+  font-size: 0.6rem;
+  color: var(--ash);
+  letter-spacing: 0.32em;
+  margin-bottom: 0.55rem;
+  text-transform: uppercase;
+}
+
+.countdown-value {
+  font-size: clamp(1rem, 1.9vw, 1.35rem);
+  color: var(--orange);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-value .sep {
+  opacity: 0.6;
+  animation: blink 1.1s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 1; }
+}
+
+.channel {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--bone);
+  text-decoration: none;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 0.4rem 0 0.55rem;
+  border-bottom: 1px solid var(--orange);
+  transition: color 0.4s, letter-spacing 0.4s, border-color 0.4s;
+  padding-left: 0.32em;
+}
+
+.channel:hover {
+  color: var(--orange);
+  letter-spacing: 0.38em;
+}
+
+.channel::before {
+  content: "@ ";
+  color: var(--orange);
+  font-weight: 400;
+}
+
+/* ── Phase states ─────────────────────── */
+body.awaiting .preamble {
+  color: var(--ash);
+}
+
+body.complete .preamble { opacity: 0; }
+
+body.complete .letter.revealed {
+  animation: pulse-letter 4.5s ease-in-out infinite;
+}
+
+@keyframes pulse-letter {
+  0%, 100% {
+    text-shadow:
+      0 0 20px rgba(255, 93, 54, 0.4),
+      0 0 60px rgba(255, 93, 54, 0.18);
+  }
+  50% {
+    text-shadow:
+      0 0 40px rgba(255, 93, 54, 0.7),
+      0 0 140px rgba(255, 93, 54, 0.35);
+  }
+}
+
+body.complete .subtitle .glitch {
+  animation: complete-glow 3.5s ease-in-out infinite;
+}
+
+@keyframes complete-glow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50%      { text-shadow: 0 0 20px rgba(240, 230, 217, 0.4); }
+}
+
+/* ── Mobile ─────────────────────────────── */
+@media (max-width: 640px) {
+  header { flex-direction: column; gap: 1rem; }
+  .meta-right { text-align: left; font-size: 0.56rem; }
+  .preamble { font-size: 0.58rem; letter-spacing: 0.38em; }
+  .preamble::before, .preamble::after { width: 1.25rem; }
+  footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+
+@media (max-width: 380px) {
+  .letters { gap: 2px; }
+  .letter { font-size: 1.55rem; width: 1.3rem; height: 2.2rem; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  .countdown-value .sep { animation: none; }
+  .letter.revealed, .letter.summoned { animation: none; }
+  .glitch::before, .glitch::after { animation: none; }
+}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="scan"></div>
+  <div class="vignette"></div>
+
+  <main>
+    <header>
+      <div class="mark">∴ · ∴</div>
+      <div class="meta-right">
+        <span>TRANSMISSION · II</span>
+        <span>MMXXVI</span>
+        <span class="hot" id="phase">— · — · —</span>
+      </div>
+    </header>
+
+    <section class="reveal">
+      <div class="preamble" id="preamble">AN INCANTATION TAKES SHAPE</div>
+      <div class="letters" id="letters" aria-hidden="true"></div>
+      <div class="subtitle">
+        <span class="glitch" data-text="REVAMPED · II">REVAMPED · II</span>
+      </div>
+    </section>
+
+    <footer>
+      <div class="countdown">
+        <div class="countdown-label">Next Transmission</div>
+        <div class="countdown-value" id="countdown">— —<span class="sep">:</span>— —<span class="sep">:</span>— —</div>
+      </div>
+      <a class="channel" href="https://youtube.com/@bryceayo" target="_blank" rel="noopener">bryceayo</a>
+    </footer>
+  </main>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════
+    
+     ═══════════════════════════════════════════════════════ */
+  const _ORIGIN = new Date('2026-04-21T20:00:00-05:00');
+
+  /* ═══════════════════════════════════════════════════════
+     Do not touch below this line.
+     ═══════════════════════════════════════════════════════ */
+
+  // rolling-key cipher parameters (XOR, b64 key)
+  var _K = "bWF5aGVt";
+  var _C = [12, 3, 11, 9, 6, 12, 9, 0, 27, 26, 4];
+  // reveal sequence — position of the letter summoned on each day
+  var _O = [1, 2, 8, 9, 6, 4, 0, 10, 3, 5, 7];
+  var _T = _C.length;
+
+  function _d(i) {
+    var k = atob(_K);
+    return String.fromCharCode(_C[i] ^ k.charCodeAt(i % k.length)).toUpperCase();
+  }
+
+  function dayIndex() {
+    var now = new Date();
+    var a = new Date(_ORIGIN.getFullYear(), _ORIGIN.getMonth(), _ORIGIN.getDate());
+    var b = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor((b - a) / 86400000);
+  }
+
+  function revealedSet() {
+    var d = dayIndex();
+    if (d < 0) return new Set();
+    var count = Math.min(d + 1, _T);
+    return new Set(_O.slice(0, count));
+  }
+
+  function latestPos() {
+    var d = dayIndex();
+    if (d < 0) return -1;
+    return _O[Math.min(d, _T - 1)];
+  }
+
+  // per-session: have we already "summoned" the latest letter?
+  function shouldSummon(pos) {
+    if (pos < 0) return false;
+    try {
+      var key = 'r2_last_summoned';
+      var prev = sessionStorage.getItem(key);
+      if (prev === String(pos)) return false;
+      sessionStorage.setItem(key, String(pos));
+      return true;
+    } catch (e) {
+      return true;
+    }
+  }
+
+  function render() {
+    var container = document.getElementById('letters');
+    container.innerHTML = '';
+    var revealed = revealedSet();
+    var latest = latestPos();
+    var summon = shouldSummon(latest);
+
+    for (var i = 0; i < _T; i++) {
+      var span = document.createElement('span');
+      span.className = 'letter';
+      if (revealed.has(i)) {
+        var ch = _d(i);
+        span.classList.add('revealed');
+        span.setAttribute('data-c', ch);
+        span.textContent = ch;
+        if (i === latest && summon) {
+          span.classList.add('summoned');
+        }
+      } else {
+        span.classList.add('locked');
+      }
+      container.appendChild(span);
+    }
+
+    // phase indicator
+    var d = dayIndex();
+    var phaseEl = document.getElementById('phase');
+    var body = document.body;
+    body.classList.remove('awaiting', 'complete');
+
+    if (d < 0) {
+      phaseEl.textContent = 'AWAITING ORIGIN';
+      body.classList.add('awaiting');
+    } else if (d >= _T) {
+      phaseEl.textContent = 'CYCLE COMPLETE';
+      body.classList.add('complete');
+    } else {
+      var n = Math.min(d + 1, _T);
+      phaseEl.textContent = 'PHASE ' + String(n).padStart(2, '0') + ' / ' + String(_T).padStart(2, '0');
+    }
+  }
+
+  function updateCountdown() {
+    var el = document.getElementById('countdown');
+    var d = dayIndex();
+
+    // final reveal reached — no more transmissions
+    if (d >= _T - 1 && d >= 0) {
+      el.innerHTML = '<span style="font-size:0.85em;letter-spacing:0.25em;">THE WORD IS SPOKEN</span>';
+      return;
+    }
+
+    var now = new Date();
+    var nextTick;
+    if (d < 0) {
+      // before origin — count down to origin itself
+      nextTick = _ORIGIN;
+    } else {
+      // count down to next local midnight
+      nextTick = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+    }
+
+    var diff = Math.max(0, nextTick - now);
+
+    // if we pass a boundary, re-render
+    if (diff === 0) {
+      render();
+      return;
+    }
+
+    var totalSec = Math.floor(diff / 1000);
+    var days = Math.floor(totalSec / 86400);
+    var h = Math.floor((totalSec % 86400) / 3600);
+    var m = Math.floor((totalSec % 3600) / 60);
+    var s = totalSec % 60;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    if (days > 0 && d < 0) {
+      el.innerHTML = pad(days) + 'd <span class="sep">·</span> ' + pad(h) + '<span class="sep">:</span>' + pad(m) + '<span class="sep">:</span>' + pad(s);
+    } else {
+      el.innerHTML = pad(h) + '<span class="sep">:</span>' + pad(m) + '<span class="sep">:</span>' + pad(s);
+    }
+  }
+
+  // initial
+  render();
+  updateCountdown();
+
+  // tick
+  setInterval(updateCountdown, 1000);
+
+  // re-render periodically to catch midnight rollover
+  var lastDay = dayIndex();
+  setInterval(function(){
+    var nowDay = dayIndex();
+    if (nowDay !== lastDay) {
+      lastDay = nowDay;
+      render();
+    }
+  }, 15000);
+})();
+</script>
+</body>
+</html>
