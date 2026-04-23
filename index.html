@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="∴ · ∴">
-<meta property="og:description" content="an incantation takes shape">
-<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="ABRACADABRA · REVAMPED II">
+<meta property="og:description" content="The teaser is live. Coming soon.">
+<meta property="og:type" content="video.other">
+<meta property="og:url" content="https://youtu.be/f-6C0pLXO5A">
+<meta property="og:image" content="https://img.youtube.com/vi/f-6C0pLXO5A/maxresdefault.jpg">
 <meta name="theme-color" content="#000000">
-<title>∴ · ∴</title>
+<title>ABRACADABRA · REVAMPED II</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -38,8 +40,6 @@ body {
   min-height: 100vh;
   position: relative;
   isolation: isolate;
-  cursor: default;
-  user-select: none;
 }
 
 /* ── Atmosphere ─────────────────────────────── */
@@ -65,8 +65,8 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 85% 65% at 50% 50%, transparent 0%, transparent 35%, rgba(0,0,0,0.92) 100%),
-    radial-gradient(circle at 50% 45%, rgba(255, 93, 54, 0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 85% 70% at 50% 45%, transparent 0%, transparent 40%, rgba(0,0,0,0.9) 100%),
+    radial-gradient(circle at 50% 35%, rgba(255, 93, 54, 0.08) 0%, transparent 55%);
   z-index: 48;
 }
 
@@ -82,7 +82,7 @@ body {
     rgba(0,0,0,0.18) 4px
   );
   z-index: 49;
-  opacity: 0.35;
+  opacity: 0.32;
 }
 
 /* ── Layout ─────────────────────────────── */
@@ -115,7 +115,7 @@ header {
   font-size: 0.95rem;
   color: var(--orange);
   letter-spacing: 0.55em;
-  padding-right: 0.55em; /* balance the letter-spacing */
+  padding-right: 0.55em;
 }
 
 .meta-right {
@@ -132,24 +132,42 @@ header {
 .meta-right .hot {
   color: var(--orange);
   font-weight: 700;
+  position: relative;
+  padding-left: 0.9em;
+}
+.meta-right .hot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0.45em;
+  height: 0.45em;
+  background: var(--orange);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  animation: livePulse 1.6s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--orange);
 }
 
-/* ── Reveal ─────────────────────────────── */
-.reveal {
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+  50%      { opacity: 0.45; transform: translateY(-50%) scale(1.25); }
+}
+
+/* ── Hero ─────────────────────────────── */
+.hero {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
-  padding: clamp(2rem, 6vh, 5rem) 0;
-  gap: clamp(1.25rem, 3vh, 2.5rem);
-  position: relative;
+  padding: clamp(2rem, 5vh, 4rem) 0 clamp(1.5rem, 3vh, 2.5rem);
+  gap: clamp(1rem, 2.5vh, 1.75rem);
 }
 
 .preamble {
   font-family: 'Cinzel', serif;
   font-weight: 400;
-  font-size: clamp(0.6rem, 1.15vw, 0.82rem);
+  font-size: clamp(0.58rem, 1.1vw, 0.78rem);
   letter-spacing: 0.55em;
   color: var(--ash);
   text-transform: uppercase;
@@ -167,95 +185,63 @@ header {
   background: linear-gradient(to right, transparent, var(--orange), transparent);
 }
 
-.letters {
+.title {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: flex-end;
-  gap: clamp(0.15rem, 0.9vw, 0.55rem);
+  align-items: center;
+  gap: clamp(0.1rem, 0.6vw, 0.4rem);
   width: 100%;
-  max-width: 100%;
   padding: 0 0.5rem;
 }
 
-.letter {
+.title .l {
   font-family: 'Cinzel', serif;
   font-weight: 900;
-  font-size: clamp(1.8rem, 7.2vw, 6.5rem);
+  font-size: clamp(1.6rem, 6.8vw, 6rem);
   line-height: 1;
-  width: clamp(1.5rem, 6.5vw, 5.5rem);
-  height: clamp(2.4rem, 9vw, 7.5rem);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-transform: uppercase;
   color: var(--orange);
-  flex-shrink: 0;
-}
-
-.letter.locked::after {
-  content: "";
-  position: absolute;
-  bottom: 0.35em;
-  left: 25%;
-  right: 25%;
-  height: 1.5px;
-  background: rgba(240, 230, 217, 0.22);
-}
-
-.letter.revealed {
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
   text-shadow:
-    0 0 20px rgba(255, 93, 54, 0.4),
-    0 0 60px rgba(255, 93, 54, 0.18),
-    0 0 120px rgba(255, 93, 54, 0.1);
-  animation: arrive 1.2s cubic-bezier(.2,.8,.25,1) both;
+    0 0 20px rgba(255, 93, 54, 0.35),
+    0 0 60px rgba(255, 93, 54, 0.15),
+    0 0 120px rgba(255, 93, 54, 0.08);
+  opacity: 0;
+  transform: translateY(-14px);
+  filter: blur(6px);
+  animation: arrive 1s cubic-bezier(.2,.8,.25,1) forwards;
 }
 
-.letter.revealed::before {
+.title .l::before {
   content: attr(data-c);
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 93, 54, 0.35);
+  color: rgba(255, 93, 54, 0.32);
   mix-blend-mode: screen;
   transform: translate(1.5px, -1px);
   pointer-events: none;
   filter: blur(0.3px);
 }
 
-.letter.summoned {
-  animation: summon 2.6s cubic-bezier(.2,.8,.25,1) both;
-}
-
 @keyframes arrive {
-  0%   { opacity: 0; transform: translateY(-18px); filter: blur(8px); }
-  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-@keyframes summon {
-  0%   { opacity: 0; transform: scale(2.6) rotate(-6deg); filter: blur(30px); color: var(--bone); }
-  30%  { opacity: 0.6; filter: blur(8px); color: var(--bone); }
-  55%  { opacity: 1; transform: scale(1.08); filter: blur(0.5px); color: var(--bone); }
-  70%  { color: var(--bone); }
-  100% { opacity: 1; transform: scale(1); filter: blur(0); color: var(--orange); }
-}
-
-/* ── Subtitle: glitchy REVAMPED II ─────── */
 .subtitle {
-  margin-top: clamp(0.75rem, 2vh, 1.5rem);
+  margin-top: clamp(0.5rem, 1.5vh, 1rem);
   height: 2.4em;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  opacity: 0;
+  animation: fadeIn 0.9s 1.6s ease-out forwards;
 }
 
 .glitch {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(0.82rem, 2vw, 1.55rem);
+  font-size: clamp(0.8rem, 1.9vw, 1.45rem);
   letter-spacing: 0.32em;
   color: var(--bone);
   text-transform: uppercase;
@@ -281,14 +267,12 @@ header {
 .glitch::before {
   color: var(--orange);
   animation: glitch-top 4.2s infinite steps(1, end);
-  transform-origin: center;
   opacity: 0;
 }
 
 .glitch::after {
   color: var(--orange-deep);
   animation: glitch-bot 5.7s infinite steps(1, end);
-  transform-origin: center;
   opacity: 0;
 }
 
@@ -314,9 +298,148 @@ header {
   92%  { opacity: 0; }
 }
 
-.subtitle.dim .glitch {
+.coming-soon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+  letter-spacing: 0.55em;
+  color: var(--ash);
+  text-transform: uppercase;
+  padding-left: 0.55em;
+  opacity: 0;
+  animation: fadeIn 0.9s 2s ease-out forwards;
+}
+.coming-soon .dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin: 0 0.8em 0.15em;
+  vertical-align: middle;
+  box-shadow: 0 0 6px var(--orange);
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ── Video section ─────────────────────── */
+.player-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.5vh, 1.75rem);
+  padding: clamp(1rem, 3vh, 2rem) 0 clamp(2rem, 4vh, 3rem);
+  opacity: 0;
+  animation: fadeIn 1.1s 2.4s ease-out forwards;
+}
+
+.cta {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.72rem, 1.3vw, 0.92rem);
+  letter-spacing: 0.45em;
+  color: var(--bone);
+  text-transform: uppercase;
+  padding-left: 0.45em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.cta .diamond {
+  color: var(--orange);
+  font-size: 0.7em;
+  animation: rotate 8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.player-frame {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  aspect-ratio: 16 / 9;
+  padding: 14px;
+  transition: transform 0.4s cubic-bezier(.2,.8,.25,1);
+}
+
+.player-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 93, 54, 0.5), transparent 40%, transparent 60%, rgba(255, 93, 54, 0.35));
+  z-index: -1;
+  filter: blur(14px);
   opacity: 0.55;
-  transition: opacity 1.2s;
+  animation: glowBreathe 4.5s ease-in-out infinite;
+}
+
+@keyframes glowBreathe {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.75; }
+}
+
+.player-frame:hover {
+  transform: translateY(-2px);
+}
+
+/* cinematic corner brackets */
+.bracket {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--orange);
+  pointer-events: none;
+  z-index: 2;
+}
+.bracket.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.bracket.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.bracket.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.bracket.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.player {
+  position: absolute;
+  inset: 14px;
+  background: #000;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 93, 54, 0.2) inset,
+    0 30px 60px -20px rgba(0,0,0,0.8);
+}
+
+.player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.player-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  color: var(--ash);
+  text-transform: uppercase;
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.player-meta .live {
+  color: var(--orange);
+  font-weight: 700;
+}
+.player-meta a {
+  color: var(--ash);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240, 230, 217, 0.2);
+  padding-bottom: 1px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.player-meta a:hover {
+  color: var(--orange);
+  border-color: var(--orange);
 }
 
 /* ── Footer ─────────────────────────────── */
@@ -330,33 +453,24 @@ footer {
   flex-wrap: wrap;
 }
 
-.countdown {
+.footer-left {
   font-family: 'JetBrains Mono', monospace;
-}
-
-.countdown-label {
   font-size: 0.6rem;
-  color: var(--ash);
   letter-spacing: 0.32em;
-  margin-bottom: 0.55rem;
+  color: var(--ash);
   text-transform: uppercase;
+  line-height: 1.8;
 }
 
-.countdown-value {
-  font-size: clamp(1rem, 1.9vw, 1.35rem);
-  color: var(--orange);
-  letter-spacing: 0.2em;
+.footer-left .big {
+  font-family: 'Cinzel', serif;
   font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.countdown-value .sep {
-  opacity: 0.6;
-  animation: blink 1.1s steps(2) infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 1; }
+  font-size: 0.85rem;
+  color: var(--bone);
+  letter-spacing: 0.38em;
+  padding-left: 0.38em;
+  display: block;
+  margin-bottom: 0.35rem;
 }
 
 .channel {
@@ -369,73 +483,41 @@ footer {
   text-transform: uppercase;
   padding: 0.4rem 0 0.55rem;
   border-bottom: 1px solid var(--orange);
-  transition: color 0.4s, letter-spacing 0.4s, border-color 0.4s;
+  transition: color 0.4s, letter-spacing 0.4s;
   padding-left: 0.32em;
 }
-
 .channel:hover {
   color: var(--orange);
   letter-spacing: 0.38em;
 }
-
 .channel::before {
   content: "@ ";
   color: var(--orange);
   font-weight: 400;
 }
 
-/* ── Phase states ─────────────────────── */
-body.awaiting .preamble {
-  color: var(--ash);
-}
-
-body.complete .preamble { opacity: 0; }
-
-body.complete .letter.revealed {
-  animation: pulse-letter 4.5s ease-in-out infinite;
-}
-
-@keyframes pulse-letter {
-  0%, 100% {
-    text-shadow:
-      0 0 20px rgba(255, 93, 54, 0.4),
-      0 0 60px rgba(255, 93, 54, 0.18);
-  }
-  50% {
-    text-shadow:
-      0 0 40px rgba(255, 93, 54, 0.7),
-      0 0 140px rgba(255, 93, 54, 0.35);
-  }
-}
-
-body.complete .subtitle .glitch {
-  animation: complete-glow 3.5s ease-in-out infinite;
-}
-
-@keyframes complete-glow {
-  0%, 100% { text-shadow: 0 0 0 transparent; }
-  50%      { text-shadow: 0 0 20px rgba(240, 230, 217, 0.4); }
-}
-
 /* ── Mobile ─────────────────────────────── */
 @media (max-width: 640px) {
   header { flex-direction: column; gap: 1rem; }
   .meta-right { text-align: left; font-size: 0.56rem; }
-  .preamble { font-size: 0.58rem; letter-spacing: 0.38em; }
+  .preamble { font-size: 0.56rem; letter-spacing: 0.38em; }
   .preamble::before, .preamble::after { width: 1.25rem; }
+  .coming-soon { font-size: 0.58rem; letter-spacing: 0.38em; }
   footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .bracket { width: 20px; height: 20px; }
+  .player-frame { padding: 10px; }
+  .player { inset: 10px; }
 }
 
 @media (max-width: 380px) {
-  .letters { gap: 2px; }
-  .letter { font-size: 1.55rem; width: 1.3rem; height: 2.2rem; }
+  .title { gap: 1px; }
+  .title .l { font-size: 1.4rem; }
 }
 
-/* Reduce motion */
+/* reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .grain { animation: none; }
-  .countdown-value .sep { animation: none; }
-  .letter.revealed, .letter.summoned { animation: none; }
+  .grain, .meta-right .hot::before, .cta .diamond, .player-frame::before { animation: none; }
+  .title .l, .subtitle, .coming-soon, .player-section { animation: none; opacity: 1; transform: none; filter: none; }
   .glitch::before, .glitch::after { animation: none; }
 }
 </style>
@@ -451,188 +533,71 @@ body.complete .subtitle .glitch {
       <div class="meta-right">
         <span>TRANSMISSION · II</span>
         <span>MMXXVI</span>
-        <span class="hot" id="phase">— · — · —</span>
+        <span class="hot">TEASER · LIVE</span>
       </div>
     </header>
 
-    <section class="reveal">
-      <div class="preamble" id="preamble">AN INCANTATION TAKES SHAPE</div>
-      <div class="letters" id="letters" aria-hidden="true"></div>
+    <section class="hero">
+      <div class="preamble">THE INCANTATION · SPOKEN</div>
+
+      <h1 class="title" aria-label="Abracadabra">
+        <span class="l" data-c="A" style="animation-delay:0.05s">A</span>
+        <span class="l" data-c="B" style="animation-delay:0.15s">B</span>
+        <span class="l" data-c="R" style="animation-delay:0.25s">R</span>
+        <span class="l" data-c="A" style="animation-delay:0.35s">A</span>
+        <span class="l" data-c="C" style="animation-delay:0.45s">C</span>
+        <span class="l" data-c="A" style="animation-delay:0.55s">A</span>
+        <span class="l" data-c="D" style="animation-delay:0.65s">D</span>
+        <span class="l" data-c="A" style="animation-delay:0.75s">A</span>
+        <span class="l" data-c="B" style="animation-delay:0.85s">B</span>
+        <span class="l" data-c="R" style="animation-delay:0.95s">R</span>
+        <span class="l" data-c="A" style="animation-delay:1.05s">A</span>
+      </h1>
+
       <div class="subtitle">
         <span class="glitch" data-text="REVAMPED · II">REVAMPED · II</span>
+      </div>
+
+      <div class="coming-soon">
+        COMING<span class="dot"></span>SOON
+      </div>
+    </section>
+
+    <section class="player-section">
+      <div class="cta">
+        <span class="diamond">◈</span>
+        <span>WATCH THE TEASER</span>
+        <span class="diamond">◈</span>
+      </div>
+
+      <div class="player-frame">
+        <span class="bracket tl"></span>
+        <span class="bracket tr"></span>
+        <span class="bracket bl"></span>
+        <span class="bracket br"></span>
+        <div class="player">
+          <iframe
+            src="https://www.youtube.com/embed/f-6C0pLXO5A?rel=0&modestbranding=1&color=white"
+            title="Abracadabra (Revamped II) — Teaser"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="player-meta">
+        <span class="live">● NOW PLAYING</span>
+        <a href="https://youtu.be/f-6C0pLXO5A" target="_blank" rel="noopener">Open on YouTube ↗</a>
       </div>
     </section>
 
     <footer>
-      <div class="countdown">
-        <div class="countdown-label">Next Transmission</div>
-        <div class="countdown-value" id="countdown">— —<span class="sep">:</span>— —<span class="sep">:</span>— —</div>
+      <div class="footer-left">
+        <span class="big">REVAMPED · II</span>
+        <span>FULL TRACK · ARRIVING</span>
       </div>
       <a class="channel" href="https://youtube.com/@bryceayo" target="_blank" rel="noopener">bryceayo</a>
     </footer>
   </main>
-
-<script>
-(function(){
-  'use strict';
-
-  /* ═══════════════════════════════════════════════════════
-    
-     ═══════════════════════════════════════════════════════ */
-  const _ORIGIN = new Date('2026-04-21T20:00:00-05:00');
-
-  /* ═══════════════════════════════════════════════════════
-     Do not touch below this line.
-     ═══════════════════════════════════════════════════════ */
-
-  // rolling-key cipher parameters (XOR, b64 key)
-  var _K = "bWF5aGVt";
-  var _C = [12, 3, 11, 9, 6, 12, 9, 0, 27, 26, 4];
-  // reveal sequence — position of the letter summoned on each day
-  var _O = [1, 2, 8, 9, 6, 4, 0, 10, 3, 5, 7];
-  var _T = _C.length;
-
-  function _d(i) {
-    var k = atob(_K);
-    return String.fromCharCode(_C[i] ^ k.charCodeAt(i % k.length)).toUpperCase();
-  }
-
-  function dayIndex() {
-    var now = new Date();
-    var a = new Date(_ORIGIN.getFullYear(), _ORIGIN.getMonth(), _ORIGIN.getDate());
-    var b = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return Math.floor((b - a) / 86400000);
-  }
-
-  function revealedSet() {
-    var d = dayIndex();
-    if (d < 0) return new Set();
-    var count = Math.min(d + 1, _T);
-    return new Set(_O.slice(0, count));
-  }
-
-  function latestPos() {
-    var d = dayIndex();
-    if (d < 0) return -1;
-    return _O[Math.min(d, _T - 1)];
-  }
-
-  // per-session: have we already "summoned" the latest letter?
-  function shouldSummon(pos) {
-    if (pos < 0) return false;
-    try {
-      var key = 'r2_last_summoned';
-      var prev = sessionStorage.getItem(key);
-      if (prev === String(pos)) return false;
-      sessionStorage.setItem(key, String(pos));
-      return true;
-    } catch (e) {
-      return true;
-    }
-  }
-
-  function render() {
-    var container = document.getElementById('letters');
-    container.innerHTML = '';
-    var revealed = revealedSet();
-    var latest = latestPos();
-    var summon = shouldSummon(latest);
-
-    for (var i = 0; i < _T; i++) {
-      var span = document.createElement('span');
-      span.className = 'letter';
-      if (revealed.has(i)) {
-        var ch = _d(i);
-        span.classList.add('revealed');
-        span.setAttribute('data-c', ch);
-        span.textContent = ch;
-        if (i === latest && summon) {
-          span.classList.add('summoned');
-        }
-      } else {
-        span.classList.add('locked');
-      }
-      container.appendChild(span);
-    }
-
-    // phase indicator
-    var d = dayIndex();
-    var phaseEl = document.getElementById('phase');
-    var body = document.body;
-    body.classList.remove('awaiting', 'complete');
-
-    if (d < 0) {
-      phaseEl.textContent = 'AWAITING ORIGIN';
-      body.classList.add('awaiting');
-    } else if (d >= _T) {
-      phaseEl.textContent = 'CYCLE COMPLETE';
-      body.classList.add('complete');
-    } else {
-      var n = Math.min(d + 1, _T);
-      phaseEl.textContent = 'PHASE ' + String(n).padStart(2, '0') + ' / ' + String(_T).padStart(2, '0');
-    }
-  }
-
-  function updateCountdown() {
-    var el = document.getElementById('countdown');
-    var d = dayIndex();
-
-    // final reveal reached — no more transmissions
-    if (d >= _T - 1 && d >= 0) {
-      el.innerHTML = '<span style="font-size:0.85em;letter-spacing:0.25em;">THE WORD IS SPOKEN</span>';
-      return;
-    }
-
-    var now = new Date();
-    var nextTick;
-    if (d < 0) {
-      // before origin — count down to origin itself
-      nextTick = _ORIGIN;
-    } else {
-      // count down to next local midnight
-      nextTick = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
-    }
-
-    var diff = Math.max(0, nextTick - now);
-
-    // if we pass a boundary, re-render
-    if (diff === 0) {
-      render();
-      return;
-    }
-
-    var totalSec = Math.floor(diff / 1000);
-    var days = Math.floor(totalSec / 86400);
-    var h = Math.floor((totalSec % 86400) / 3600);
-    var m = Math.floor((totalSec % 3600) / 60);
-    var s = totalSec % 60;
-
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    if (days > 0 && d < 0) {
-      el.innerHTML = pad(days) + 'd <span class="sep">·</span> ' + pad(h) + '<span class="sep">:</span>' + pad(m) + '<span class="sep">:</span>' + pad(s);
-    } else {
-      el.innerHTML = pad(h) + '<span class="sep">:</span>' + pad(m) + '<span class="sep">:</span>' + pad(s);
-    }
-  }
-
-  // initial
-  render();
-  updateCountdown();
-
-  // tick
-  setInterval(updateCountdown, 1000);
-
-  // re-render periodically to catch midnight rollover
-  var lastDay = dayIndex();
-  setInterval(function(){
-    var nowDay = dayIndex();
-    if (nowDay !== lastDay) {
-      lastDay = nowDay;
-      render();
-    }
-  }, 15000);
-})();
-</script>
 </body>
 </html>
